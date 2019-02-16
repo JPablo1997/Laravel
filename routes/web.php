@@ -118,10 +118,35 @@ Route::get('/insertar_varios', function(){
 Route::get('/cliente/{id}/articulo', function($id){
     $articulo = Cliente::find($id)->articulo;
    
-    if($articulo){
-        return $articulo;
-    }else{
-        return "No existe un cliente con id $id";
-    }
-    
+    return $articulo;
+});
+
+Route::get('/articulo/{id}/cliente', function($id){
+    $cliente = Articulo::find($id)->cliente;
+   
+    return $cliente;
+});
+
+Route::get('/cliente/{id}/articulos', function($id){
+    $articulos = Cliente::find($id)->articulos->where('pais_origen', 'ESA');
+
+    return $articulos;
+});
+
+Route::get('/cliente/{id}/perfiles', function($id){
+    $perfils = Cliente::find($id)->perfils;
+
+    return $perfils;
+});
+
+Route::get('/cliente/{id}/calificaciones', function($id){
+    $calificaciones = Cliente::find($id)->calificaciones;
+
+    return $calificaciones;
+});
+
+Route::get('/articulo/{id}/calificaciones', function($id){
+    $calificaciones = Articulo::find($id)->calificaciones;
+
+    return $calificaciones;
 });

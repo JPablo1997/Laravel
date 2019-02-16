@@ -19,4 +19,12 @@ class Articulo extends Model
 
     protected $dates = ['deleted_at'];
 
+    public function cliente()
+    {
+       return $this->belongsTo('App\Cliente');
+    }
+
+    public function calificaciones(){
+        return $this->morphMany("App\Calificaciones", "calificacion");
+    }
 }
