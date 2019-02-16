@@ -1,6 +1,7 @@
 <?php
 
 use App\Articulo;
+use App\Cliente;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,3 +114,14 @@ Route::get('/insertar_varios', function(){
 /*Route::get('/insertar', function(){
     DB::insert('INSERT INTO articulos (NOMBRE_ARTICULO, PRECIO, PAIS_ORIGEN, OBSERVACIONES, SECCION) VALUES(?,?,?,?,?)', ["NAVAJA",120.0,"SUIZA","Multiusos","Ferreteria"]);
 });*/
+
+Route::get('/cliente/{id}/articulo', function($id){
+    $articulo = Cliente::find($id)->articulo;
+   
+    if($articulo){
+        return $articulo;
+    }else{
+        return "No existe un cliente con id $id";
+    }
+    
+});
